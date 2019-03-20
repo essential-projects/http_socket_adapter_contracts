@@ -20,7 +20,32 @@ export interface IHttpSocketAdapter {
    * @returns void
    */
   emit<TMessage>(eventType: string, message: TMessage): void;
-  initializeAdapter(httpServer: http.Server): Promise<any> | any;
+
+  /**
+   * Initializes a socket server using the provided http server.
+   *
+   * @param  {http.Server} httpServer   The http server instance the adapter
+   *                                    should be initialized on.
+   * @returns Promise
+   */
+  initializeAdapter(httpServer: http.Server): Promise<void> | void;
+
+  /**
+   * Returns an endpoint that can be used to communicate with the provided
+   * namespace.
+   *
+   * @param  {string} namespaceIdentifier   The identifier the namespace is
+   *                                        registered with.
+   * @returns IEndpointSocketScope          An endpoint representing the
+   *                                        namespace.
+   */
   getNamespace(namespaceIdentifier: string): IEndpointSocketScope;
+
+  /**
+   * Closes all connections held by the socket adapter and disposes all of its
+   * artifacts.
+   *
+   * @returns Promise
+   */
   dispose(): Promise<void> | void;
 }
