@@ -25,7 +25,6 @@ export interface IHttpSocketAdapter {
    * @async
    * @param  {http.Server} httpServer   The http server instance the adapter
    *                                    should be initialized on.
-   * @returns Promise
    */
   initializeAdapter(httpServer: http.Server): Promise<void> | void;
 
