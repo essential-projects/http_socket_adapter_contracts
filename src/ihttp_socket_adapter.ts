@@ -7,7 +7,6 @@ export interface IHttpSocketAdapter {
    * Executes the supplied callback each time a client connects to the socket.
    *
    * @param  {OnConnectCallback} callback
-   * @returns void
    */
   onConnect(callback: OnConnectCallback): void;
 
@@ -17,13 +16,13 @@ export interface IHttpSocketAdapter {
    *
    * @param  {string} eventType The event type used to send the message.
    * @param  {TMessage} message The message to be sent.
-   * @returns void
    */
   emit<TMessage>(eventType: string, message: TMessage): void;
 
   /**
    * Initializes a socket server using the provided http server.
    *
+   * @async
    * @param  {http.Server} httpServer   The http server instance the adapter
    *                                    should be initialized on.
    * @returns Promise
@@ -45,7 +44,7 @@ export interface IHttpSocketAdapter {
    * Closes all connections held by the socket adapter and disposes all of its
    * artifacts.
    *
-   * @returns Promise
+   * @async
    */
   dispose(): Promise<void> | void;
 }
